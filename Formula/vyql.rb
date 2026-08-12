@@ -1,28 +1,28 @@
 class Vyql < Formula
   desc "Multi-language taint and graph security scanner that explains its findings"
   homepage "https://github.com/vyprai/vyql"
-  version "0.2.5"
+  version "0.3.0"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/vyprai/vyql/releases/download/v0.2.5/vyql_v0.2.5_darwin_arm64.tar.gz"
-      sha256 "4029c60fb31435498252d9049b8fa715bf86b15a9c6ee4f7f173a448dd6d5c26"
+      url "https://github.com/vyprai/vyql/releases/download/v0.3.0/vyql_v0.3.0_darwin_arm64.tar.gz"
+      sha256 "139834037a46a20eaaf6f4af5ebcd8fac9eafe94ae343fcff955ba4c8e03c758"
     end
     on_intel do
-      url "https://github.com/vyprai/vyql/releases/download/v0.2.5/vyql_v0.2.5_darwin_amd64.tar.gz"
-      sha256 "22cfa36bf22b45aded2353b61996c8f11b433dc3b504fda5dbf6499c548a4559"
+      url "https://github.com/vyprai/vyql/releases/download/v0.3.0/vyql_v0.3.0_darwin_amd64.tar.gz"
+      sha256 "25c58087fcb22c22a22f75fdf3a3a6014b0870c94f492f7458c1eecc47f5fce7"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vyprai/vyql/releases/download/v0.2.5/vyql_v0.2.5_linux_arm64.tar.gz"
-      sha256 "1efe2372910e69620bd42b7c778016e293ce85a6f3bd1c1b4b8da8328f86510a"
+      url "https://github.com/vyprai/vyql/releases/download/v0.3.0/vyql_v0.3.0_linux_arm64.tar.gz"
+      sha256 "681266c22f250e1349600e2a048ecb7cc0388f702b2c5d8a168a696fedcfe6bc"
     end
     on_intel do
-      url "https://github.com/vyprai/vyql/releases/download/v0.2.5/vyql_v0.2.5_linux_amd64.tar.gz"
-      sha256 "7f77beec702ef655f01d6a715cb71211af5f64e0c73c85d1f8cc9c7a11bb5d84"
+      url "https://github.com/vyprai/vyql/releases/download/v0.3.0/vyql_v0.3.0_linux_amd64.tar.gz"
+      sha256 "f06764452a5f0af67e6126b3adf74e41b651b04f109d0660a495b88e5ba0fbbf"
     end
   end
 
@@ -50,10 +50,13 @@ class Vyql < Formula
           cur.execute("SELECT * FROM t WHERE a = '" + req.args.get("a") + "'")
     PYTHON
 
-    output = shell_output("#{bin}/vyql scan #{testpath}", 1)
+    # A met -fail-on threshold exits 3: the check ran and did not pass. 1 means
+    # vyql could not run and 2 means the invocation was wrong, so a packaging
+    # fault cannot be mistaken here for the finding this fixture plants.
+    output = shell_output("#{bin}/vyql scan #{testpath}", 3)
     assert_match "finding(s)", output
 
-    # Findings at or above HIGH exit 1; the same scan gated off exits 0.
-    system bin/"vyql", "scan", "--fail-on", "none", testpath
+    # The same scan with the gate off exits 0.
+    system bin/"vyql", "scan", "-fail-on", "none", testpath
   end
 end
