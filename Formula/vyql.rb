@@ -1,28 +1,28 @@
 class Vyql < Formula
   desc "Multi-language taint and graph security scanner that explains its findings"
   homepage "https://github.com/vyprai/vyql"
-  version "0.4.1"
+  version "0.4.3"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/vyprai/vyql/releases/download/v0.4.1/vyql_v0.4.1_darwin_arm64.tar.gz"
-      sha256 "550f07fb8a32d1dd17f3ace5ca4cf931f7e03a90174d067d3cd2e8ddc6cd5aa3"
+      url "https://github.com/vyprai/vyql/releases/download/v0.4.3/vyql_v0.4.3_darwin_arm64.tar.gz"
+      sha256 "be66199ba3d6e92c8cf67734a16118cc4d5911bccdd5a2e0f486e832dfcb0e43"
     end
     on_intel do
-      url "https://github.com/vyprai/vyql/releases/download/v0.4.1/vyql_v0.4.1_darwin_amd64.tar.gz"
-      sha256 "b91f6be6618330acdb7d7e4f2d9509092eac11bd16b505aa392f8a51911d8a2e"
+      url "https://github.com/vyprai/vyql/releases/download/v0.4.3/vyql_v0.4.3_darwin_amd64.tar.gz"
+      sha256 "090138e267c173c1ae323b0369cf34227156da5898b22b3d7de6a0bb3f4de52c"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vyprai/vyql/releases/download/v0.4.1/vyql_v0.4.1_linux_arm64.tar.gz"
-      sha256 "78cdf2f768e712fcea1dab583ca5a59158e34222fdb56346b7940d3fd9284535"
+      url "https://github.com/vyprai/vyql/releases/download/v0.4.3/vyql_v0.4.3_linux_arm64.tar.gz"
+      sha256 "df382a3b3549ecad47875e6f5078176ac0d74d404c5870131c81b3ea6432493c"
     end
     on_intel do
-      url "https://github.com/vyprai/vyql/releases/download/v0.4.1/vyql_v0.4.1_linux_amd64.tar.gz"
-      sha256 "b06c95a2961e7df099f4f4072e11077e33bf4733f38873ec9afe9173596bc727"
+      url "https://github.com/vyprai/vyql/releases/download/v0.4.3/vyql_v0.4.3_linux_amd64.tar.gz"
+      sha256 "6a37c8e0875c78678512abf5ad0ae05d3c44b85911946b53b531dc7da0fef8c6"
     end
   end
 
